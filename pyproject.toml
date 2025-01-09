@@ -1,0 +1,163 @@
+[build-system]
+requires = ["poetry_core"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "mlops"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "miguel duran",email = "miguel@vortico.tech"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "scikit-learn (>=1.6.0,<2.0.0)",
+    "numpy (>=2.2.1,<3.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "pyarrow (>=18.1.0,<19.0.0)",
+    "flama[full] (==1.8.1)"
+]
+
+[tool.poetry]
+package-mode = true 
+include = ["model_config.yaml"]
+
+[tool.poetry.group.dev.dependencies]
+notebook = "^7.3.2"
+pytest = "^8.3"
+pytest-xdist = { version = "^3.3", extras = ["psutil"] }
+pytest-cov = "^6.0"
+pytest-asyncio = "^0.24"
+ipython = "^8.0"
+isort = "^5.12"
+ruff = "^0.0.292"
+black = "^23.9"
+pre-commit = "^3.4"
+python-multipart = "^0.0.6"
+httpx = ">=0.25,<1.0.0"
+aiosqlite = ">=0.19.0,<1.0.0"
+Faker = "^8.2"
+SQLAlchemy = { version = "^2.0", extras = ["asyncio"] }
+gevent = "^23.9.1"
+pyright = "^1.1.386"
+matplotlib = "^3.10.0"
+
+
+[tool.black]
+line-length = 120
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+  | notebooks
+)/
+'''
+
+[tool.isort]
+profile = "black"
+atomic = true
+multi_line_output = 3
+include_trailing_comma = true
+line_length = 120
+skip_glob = [
+    "*/.venv/**",
+    "*/docs/**",
+    "*/build/**",
+    "*/dist/**",
+    "*/notebooks/**"
+]
+
+[tool.ruff]
+line-length = 120
+exclude = [
+    ".git",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".venv",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "exploring",
+    "notebooks"
+]
+
+[tool.ruff.lint]
+# Enable Pyflakes and pycodestyle rules.
+select = ["C90", "E", "F", "G", "I", "W", "T", "UP"]
+ignore = ["E721"]
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.pyright]
+include = ["mlops"]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/notebooks",
+]
+reportWildcardImportFromLibrary = false
+reportPrivateImportUsage = false
+
+[tool.pytest.ini_options]
+minversion = 3
+addopts = "--dist=loadfile --junitxml=./test-results/pytest/results.xml --no-cov-on-fail --cov-report=html --cov-report=xml --cov-report=term-missing --cov-config=pyproject.toml --cov=. --pdbcls=IPython.terminal.debugger:TerminalPdb -nauto"
+norecursedirs = [
+    "*settings*",
+    "*urls*",
+    "*docs*",
+]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+
+
+[tool.coverage.run]
+source = [
+    "mlops"
+]
+branch = true
+omit = [
+    ".venv*",
+    "*__init__.py",
+    "*__main__.py",
+    "tests/*",
+]
+concurrency = ["thread", "multiprocessing", "gevent"]
+
+[tool.coverage.report]
+show_missing = true
+ignore_errors = true
+fail_under = 80
+exclude_lines = [
+    "noqa",
+    "pragma: no cover",
+    "pass",
+    "\\.\\.\\.",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "def __repr__",
+    "def __str__",
+    "if cls\\.debug",
+    "if (typing\\.|t\\.)?TYPE_CHECKING:",
+]
+
+[tool.coverage.paths]
+source = [
+    "./"
+]
+
+[tool.coverage.html]
+directory = "./test-results/coverage_html/"
+
+[tool.coverage.xml]
+output = "./test-results/coverage.xml"
+
+[tool.coverage.json]
+output = "./test-results/coverage.json"

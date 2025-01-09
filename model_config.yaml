@@ -1,0 +1,34 @@
+models:
+  churn:
+    target: "Exited"
+    drop_features:
+      numerical:
+        - "CustomerId"
+        - "RowNumber"
+      categorical:
+        - "Surname"
+    test_size: 0.2
+    random_seed: 123456
+    param_grid:
+      mlp_classifier__hidden_layer_sizes:
+      - [8, 1]
+      - [8, 6, 1]
+      - [16, 1]
+      - [16, 8, 1]
+      - [32, 16, 1]
+      mlp_classifier__activation:
+        - "relu"
+        - "tanh"
+      mlp_classifier__learning_rate_init:
+        - 0.001
+        - 0.01
+      mlp_classifier__max_iter:
+        - 1000
+    metadata:
+      author: "ML Team"
+      description: "Churn Prediction Model"
+      version: "1.0.0"
+      tags:
+        - "production"
+        - "classification"
+        - "churn"

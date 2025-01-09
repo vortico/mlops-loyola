@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+run_lint() {
+  local fix="$1"
+  if [[ "$fix" == "-f" || "$fix" == "--fix" ]]; then
+    poetry run isort .
+    poetry run black .
+    poetry run ruff check --fix .
+  else
+    poetry run isort --check .
+    poetry run black --check .
+    poetry run ruff check .
+  fi
+
+  poetry run pyright
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+  run_lint "$@"
+fi

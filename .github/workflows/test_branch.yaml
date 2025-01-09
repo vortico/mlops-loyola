@@ -1,0 +1,46 @@
+name: Test Any Branch
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    name: Test (${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.13"]
+    container:
+      image: python:${{ matrix.python }}
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+      - name: Commit Linter
+        uses: wagoid/commitlint-github-action@v5
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - id: install
+        name: Install requirements
+        run: |
+          pip install pip poetry --upgrade
+          poetry install --with dev 
+      - id: black
+        name: Code format checking
+        run: ./scripts/black --check .
+      - id: isort
+        name: Imports order checking
+        run: ./scripts/isort --check .
+      - id: ruff
+        name: Code style (ruff)
+        run: ./scripts/ruff check .
+      - id: pyright
+        name: Static types check
+        run: ./scripts/pyright
+      - id: tests
+        name: Tests
+        run: ./scripts/test

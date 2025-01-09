@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+  poetry run isort "$@"
+fi

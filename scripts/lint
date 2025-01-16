@@ -1,18 +1,24 @@
 #!/usr/bin/env bash
 
+source ./scripts/black
+source ./scripts/isort
+source ./scripts/ruff
+source ./scripts/pyright
+
 run_lint() {
+  echo "🧹 Code lint using multiple tools:"
+
   local fix="$1"
   if [[ "$fix" == "-f" || "$fix" == "--fix" ]]; then
-    poetry run isort .
-    poetry run black .
-    poetry run ruff check --fix .
+    run_black .
+    run_isort .
+    run_ruff --fix .
   else
-    poetry run isort --check .
-    poetry run black --check .
-    poetry run ruff check .
+    run_black --check .
+    run_isort --check .
+    run_ruff .
   fi
-
-  poetry run pyright
+  run_pyright
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then

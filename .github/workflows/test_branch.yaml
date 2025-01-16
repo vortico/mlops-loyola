@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ["3.13"]
+        python: ["3.12"]
     container:
       image: python:${{ matrix.python }}
     steps:
@@ -28,7 +28,7 @@ jobs:
         name: Install requirements
         run: |
           pip install pip poetry --upgrade
-          poetry install --with dev 
+          poetry install --with dev
       - id: black
         name: Code format checking
         run: ./scripts/black --check .

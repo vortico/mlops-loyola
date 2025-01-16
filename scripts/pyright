@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
-if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+run_pyright() {
   poetry run pyright "$@"
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+  run_pyright "$@"
 fi

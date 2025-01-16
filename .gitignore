@@ -143,3 +143,7 @@ dmypy.json
 # Backup folder
 .backup/
 
+# Airflow
+airflow/logs/
+airflow/config/
+airflow/plugins/

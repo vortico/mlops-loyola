@@ -28,6 +28,9 @@ serve-model: ## Serves the model
 		--app-description "Predict whether a customer will leave a company or not" \
 		--app-version "1.0.0"
 
+serve-airflow: ## Serves the airflow
+	@./scripts/serve-airflow
+
 test: ## Runs tests
 	@./scripts/test
 

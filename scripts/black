@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
-if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+run_black() {
   poetry run black "$@"
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+  run_black "$@"
 fi

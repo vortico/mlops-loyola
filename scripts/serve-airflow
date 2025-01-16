@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+run_serve_airflow() {
+  echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env && \
+  docker build -t airflow-mlops:latest -f airflow/Dockerfile . && \
+  docker compose -f airflow/docker-compose.yaml up airflow-init && \
+  docker compose -f airflow/docker-compose.yaml up
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+  run_serve_airflow "$@"
+fi

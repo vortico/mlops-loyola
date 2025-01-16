@@ -1,7 +1,5 @@
-# Use Python base image
 FROM python:3.12-slim
 
-# Install MLflow
 RUN apt-get update && apt-get -y upgrade \
   && pip install --upgrade pip \
   && pip --version

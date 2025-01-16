@@ -68,6 +68,7 @@ class ChurnProcessor:
 
     def dump(self, metrics, model_path="models/trained_model.flm"):
         logger.info("Saving model to %s", model_path)
+
         flama.dump(
             self.pipeline,
             model_path,
@@ -87,6 +88,7 @@ class ChurnProcessor:
     @classmethod
     def load(cls, model_path="models/trained_model.flm") -> t.Self:
         logger.info("Loading model from %s", model_path)
+
         pipeline = flama.load(model_path)
 
         obj = cls()

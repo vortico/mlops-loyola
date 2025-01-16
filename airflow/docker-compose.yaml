@@ -79,6 +79,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ../data:/opt/airflow/data
     - ../artifacts:/opt/airflow/artifacts
+    - ../mlflow/data:/mlflow
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -86,6 +87,8 @@ x-airflow-common:
       condition: service_healthy
     postgres:
       condition: service_healthy
+  networks:
+    - airflow-network
 
 services:
   postgres:
@@ -102,6 +105,8 @@ services:
       retries: 5
       start_period: 5s
     restart: always
+    networks:
+      - airflow-network
 
   redis:
     # Redis is limited to 7.2-bookworm due to licencing change
@@ -116,6 +121,8 @@ services:
       retries: 50
       start_period: 30s
     restart: always
+    networks:
+      - airflow-network
 
   airflow-webserver:
     <<: *airflow-common
@@ -285,6 +292,31 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+
+  # We need to add mlflow service here to make it available to airflow
+  mlflow:
+    build: ../mlflow
+    ports:
+      - "5001:5001"
+    volumes:
+      - ../mlflow/data:/mlflow
+    networks:
+      - airflow-network
+    environment:
+      - MLFLOW_ARTIFACT_ROOT=/mlflow/artifacts
+    user: "${AIRFLOW_UID:-50000}:0"  # Match Airflow's user
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:5001/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    restart: always
+
+networks:
+  airflow-network:
+    name: airflow-network
+    driver: bridge
 
 volumes:
   postgres-db-volume:

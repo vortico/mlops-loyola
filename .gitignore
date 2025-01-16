@@ -147,3 +147,6 @@ dmypy.json
 airflow/logs/
 airflow/config/
 airflow/plugins/
+
+# MLflow
+mlflow/data/

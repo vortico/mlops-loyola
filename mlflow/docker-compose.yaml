@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mlflow:
+    build: .
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./mlflow_data:/mlflow

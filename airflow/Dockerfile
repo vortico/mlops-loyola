@@ -15,6 +15,7 @@ COPY pyproject.toml poetry.lock ./
 # Then install the project itself
 RUN poetry config virtualenvs.create false && \
     poetry install --no-interaction --no-ansi --only main && \
+    poetry install --no-interaction --no-ansi --only airflow && \
     poetry install --no-interaction --no-ansi --only-root
 
     # Switch to airflow user

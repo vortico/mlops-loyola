@@ -23,7 +23,7 @@ ruff: ## Runs ruff
 	@./scripts/ruff
 
 serve-model: ## Serves the model
-	@./scripts/serve "./artifacts/models/churn/model.flm" \
+	@./scripts/serve-model "./artifacts/models/churn/model.flm" \
 		--app-title "Churn classifier" \
 		--app-description "Predict whether a customer will leave a company or not" \
 		--app-version "1.0.0"

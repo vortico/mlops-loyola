@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -23,11 +24,9 @@ default_args = {
     "retry_delay": timedelta(minutes=5),
 }
 
-DATA_PATH = Path("./data/churn/data.parquet")
-MODEL_PATH = Path("./artifacts/models/churn/model.flm")
-MLFLOW_URI = "http://mlflow:5001"
-
-mlflow.set_tracking_uri(MLFLOW_URI)
+DATA_PATH = Path(os.environ["MLOPS_DATA_PATH"])
+MODEL_PATH = Path(os.environ["MLOPS_MODEL_PATH"])
+MLFLOW_URI = os.environ["MLOPS_MLFLOW_URI"]
 
 
 class ChurnPredictionModel(PythonModel):
@@ -110,6 +109,7 @@ def mlflow_register_model(**context):
     metrics = task_instance.xcom_pull(key="metrics")
 
     # Set the experiment
+    mlflow.set_tracking_uri(MLFLOW_URI)
     mlflow.set_experiment("churn-prediction-loyola")
 
     # Load the model
@@ -137,6 +137,7 @@ def mlflow_load_model(**context):
     run_id = task_instance.xcom_pull(key="run_id")
 
     # Load the model
+    mlflow.set_tracking_uri(MLFLOW_URI)
     model = mlflow.pyfunc.load_model(f"runs:/{run_id}/model")
 
     # Make predictions

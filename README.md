@@ -22,13 +22,19 @@ make lint
 make serve-model
 ```
 
-## 📚 Repository Structure
+## 📚 Repository Documentation
+
+You can find the documentation in the `docs/` directory:
 
 - `docs/` - Detailed documentation
   - `cicd/` - CI/CD pipeline implementation and practices
   - `dev-env/` - Python environment management with pyenv and poetry
   - `make/` - Automation and Makefile usage guide
   - `package/` - MLOps package structure and implementation
+  - `airflow/` - Airflow DAGs and configuration
+  - `mlflow/` - MLflow configuration and best practices
+  - `package/` - MLOps package structure and implementation
+
 
 ## 🛠 Development Tools
 
@@ -37,10 +43,12 @@ This project uses modern Python development tools and practices:
 ### Key Make Commands
 ```bash
 make help                 # Show all available commands
+make install              # Install all dependencies
 make lint                 # Run all linting tools
 make lint-fix            # Auto-fix common issues
 make test                # Run test suite
 make serve-model         # Start the model server
+make serve-airflow       # Start the airflow server
 ```
 
 ### Development Environment
@@ -49,6 +57,9 @@ make serve-model         # Start the model server
 - **Code Quality**: black, isort, ruff, pyright
 - **Testing**: pytest
 - **Model Serving**: Flama
+- **Model Deployment**: Docker
+- **Model Registry**: mlflow
+- **Orchestration**: airflow
 
 ## 🎯 Learning Objectives
 

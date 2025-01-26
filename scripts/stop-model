@@ -1,7 +1,7 @@
 #!/bin/bash
 
 run_stop_model() {
-  docker compose down app --remove-orphans
+  docker compose down app -v --remove-orphans
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then

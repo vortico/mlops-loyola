@@ -1,7 +1,7 @@
 #!/bin/bash
 
 run_stop_airflow() {
-  docker compose down --remove-orphans
+  docker compose -f airflow/docker-compose.yaml down -v --remove-orphans
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then

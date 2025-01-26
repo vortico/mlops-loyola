@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 run_serve_airflow() {
   echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env && \
-  docker build -t airflow-mlops:latest -f airflow/Dockerfile . && \
+  docker build -t mlopscourse/airflow:latest -f airflow/Dockerfile . && \
   docker compose -f airflow/docker-compose.yaml up airflow-init && \
-  docker compose -f airflow/docker-compose.yaml up
+  docker compose -f airflow/docker-compose.yaml up -d --remove-orphans
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+run_stop_airflow() {
+  docker compose down --remove-orphans
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+  run_stop_airflow "$@"
+fi

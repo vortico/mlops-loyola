@@ -10,7 +10,7 @@ app = Flama(
 )
 
 
-@app.get("/")
+@app.get("/ping/")
 def home():
     """
     tags:

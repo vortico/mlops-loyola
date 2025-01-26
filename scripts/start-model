@@ -1,0 +1,10 @@
+#!/bin/bash
+
+run_serve_model() {
+  docker compose up --remove-orphans -d
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+  run_serve_model "$@"
+fi
+

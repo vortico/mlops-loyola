@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+    image: mlopscourse/model:local
+    command: ["run", "--host", "0.0.0.0", "--port", "8000", "--development"]
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=true
+      - VERSION=1.0.0
+      - HOST=0.0.0.0
+      - PORT=8000 
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./mlops:/app/mlops
+

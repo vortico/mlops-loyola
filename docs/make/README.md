@@ -32,7 +32,10 @@ Our project uses Make to simplify common development tasks. Here are the availab
 - `make test` - Run the test suite
 
 ### Deployment Commands
-- `make serve-model` - Serve the ML model with a web interface
+- `make model-start` - Serve the ML model with a web interface
+- `make model-stop` - Stop serving the ML model
+- `make airflow-start` - Serves airflow (with mlflow as model registry) pipelines
+- `make airflow-stop` - Stop serving airflow
 
 ## How to Use Make
 

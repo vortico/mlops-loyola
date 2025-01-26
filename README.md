@@ -19,7 +19,7 @@ make lint
 ```
 4. Start the model server:
 ```bash
-make serve-model
+make start
 ```
 
 ## 📚 Repository Documentation
@@ -42,13 +42,20 @@ This project uses modern Python development tools and practices:
 
 ### Key Make Commands
 ```bash
-make help                 # Show all available commands
-make install              # Install all dependencies
-make lint                 # Run all linting tools
-make lint-fix            # Auto-fix common issues
-make test                # Run test suite
-make serve-model         # Start the model server
-make serve-airflow       # Start the airflow server
+airflow-start                  Start serving airflow
+airflow-stop                   Start serving airflow
+black                          Runs black
+install-dev                    Installs the project (with dev dependencies)
+install                        Installs the project (only main dependencies)
+isort                          Runs isort
+lint-fix                       Runs a linting pipeline with auto fixing: black, isort, ruff, and mypy
+lint                           Runs linting tools
+model-serve                    Serves the model in local environment
+model-start                    Start serving the model container
+model-stop                     Stop serving the model container
+pyright                        Runs pyright
+ruff                           Runs ruff
+test                           Runs tests
 ```
 
 ### Development Environment

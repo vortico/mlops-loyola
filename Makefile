@@ -22,22 +22,22 @@ install-dev: ## Installs the project (with dev dependencies)
 ruff: ## Runs ruff
 	@./scripts/ruff
 
-serve-model: ## Serves the model in local environment
+model-serve: ## Serves the model in local environment
 	@./scripts/serve-model "./artifacts/models/churn/model.flm" \
 		--app-title "Churn classifier" \
 		--app-description "Predict whether a customer will leave a company or not" \
 		--app-version "1.0.0"
 
-start: ## Start serving the model container 
+model-start: ## Start serving the model container 
 	@./scripts/start-model
 
-stop: ## Stop serving the model container
+model-stop: ## Stop serving the model container
 	@./scripts/stop-model
 
-start-airflow: ## Start serving airflow
+airflow-start: ## Start serving airflow
 	@./scripts/start-airflow
 
-stop-airflow: ## Start serving airflow
+airflow-stop: ## Start serving airflow
 	@./scripts/stop-airflow
 
 test: ## Runs tests

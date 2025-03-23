@@ -1,4 +1,5 @@
 # MLOps and ML Engineering Course
+
 > Loyola University Sevilla
 
 ## Overview
@@ -10,37 +11,35 @@ Welcome to the MLOps and ML Engineering course! This repository contains practic
 1. Clone this repository
 
 2. Install dependencies:
+
 ```bash
 make install-dev
 ```
-3. Run the linting checks:
+
+3. Start the model server
+
 ```bash
-make lint
-```
-4. Start the model server:
-```bash
-make start
+make model-serve
 ```
 
 ## 📚 Repository Documentation
 
-You can find the documentation in the `docs/` directory:
+You can find the documentation in the [`docs/`](./docs/) directory:
 
-- `docs/` - Detailed documentation
-  - `cicd/` - CI/CD pipeline implementation and practices
-  - `dev-env/` - Python environment management with pyenv and poetry
-  - `make/` - Automation and Makefile usage guide
-  - `package/` - MLOps package structure and implementation
-  - `airflow/` - Airflow DAGs and configuration
-  - `mlflow/` - MLflow configuration and best practices
-  - `package/` - MLOps package structure and implementation
-
+- `cicd/` - CI/CD pipeline implementation and practices
+- `dev-env/` - Python environment management with pyenv and poetry
+- `make/` - Automation and Makefile usage guide
+- `package/` - MLOps package structure and implementation
+- `airflow/` - Airflow DAGs and configuration
+- `mlflow/` - MLflow configuration and best practices
+- `package/` - MLOps package structure and implementation
 
 ## 🛠 Development Tools
 
 This project uses modern Python development tools and practices:
 
 ### Key Make Commands
+
 ```bash
 airflow-start                  Start serving airflow
 airflow-stop                   Start serving airflow
@@ -59,6 +58,7 @@ test                           Runs tests
 ```
 
 ### Development Environment
+
 - **Python Version**: 3.13
 - **Package Management**: Poetry
 - **Code Quality**: black, isort, ruff, pyright
@@ -71,6 +71,7 @@ test                           Runs tests
 ## 🎯 Learning Objectives
 
 This course covers:
+
 - Setting up professional ML development environments
 - Implementing CI/CD for ML projects
 - Building production-ready ML pipelines
@@ -80,6 +81,7 @@ This course covers:
 ## 📖 Documentation
 
 Detailed documentation is available in the `docs/` directory:
+
 - [CI/CD Implementation](docs/cicd/README.md)
 - [Development Environment Setup](docs/dev-env/README.md)
 - [Make and Automation](docs/make/README.md)

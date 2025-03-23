@@ -15,7 +15,7 @@ default_args = {
     "start_date": start_date,
     "email_on_failure": False,
     "email_on_retry": False,
-    "retries": 1,
+    "retries": 10,
     "retry_delay": datetime.timedelta(minutes=10),
 }
 

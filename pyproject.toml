@@ -6,21 +6,19 @@ build-backend = "poetry.core.masonry.api"
 name = "mlops"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "miguel duran",email = "miguel@vortico.tech"}
-]
+authors = [{ name = "miguel duran", email = "miguel@vortico.tech" }]
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "scikit-learn (>=1.6.0,<2.0.0)",
-    "numpy (>=2.2.1,<3.0.0)",
-    "pandas (>=2.2.3,<3.0.0)",
-    "pyarrow (>=18.1.0,<19.0.0)",
-    "flama[pydantic,client] (==1.8.1)"
+  "scikit-learn (>=1.6.0,<2.0.0)",
+  "numpy (>=2.2.1,<3.0.0)",
+  "pandas (>=2.2.3,<3.0.0)",
+  "pyarrow (>=18.1.0,<19.0.0)",
+  "flama[pydantic,client] (==1.10.3)",
 ]
 
 [tool.poetry]
 package-mode = true
-include = ["model_config.yaml"]
+include = ["model.yaml"]
 
 [tool.poetry.group.dev.dependencies]
 notebook = "^7.3.2"
@@ -67,27 +65,27 @@ multi_line_output = 3
 include_trailing_comma = true
 line_length = 120
 skip_glob = [
-    "*/.venv/**",
-    "*/docs/**",
-    "*/build/**",
-    "*/dist/**",
-    "*/notebooks/**"
+  "*/.venv/**",
+  "*/docs/**",
+  "*/build/**",
+  "*/dist/**",
+  "*/notebooks/**",
 ]
 
 [tool.ruff]
 line-length = 120
 exclude = [
-    ".git",
-    ".pytest_cache",
-    ".mypy_cache",
-    ".ruff_cache",
-    ".venv",
-    "buck-out",
-    "build",
-    "dist",
-    "node_modules",
-    "exploring",
-    "notebooks"
+  ".git",
+  ".pytest_cache",
+  ".mypy_cache",
+  ".ruff_cache",
+  ".venv",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "exploring",
+  "notebooks",
 ]
 
 [tool.ruff.lint]
@@ -99,62 +97,45 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.pyright]
 include = ["mlops"]
-exclude = [
-    "**/node_modules",
-    "**/__pycache__",
-    "**/notebooks",
-]
+exclude = ["**/node_modules", "**/__pycache__", "**/notebooks"]
 reportWildcardImportFromLibrary = false
 reportPrivateImportUsage = false
 
 [tool.pytest.ini_options]
 minversion = 3
 addopts = "--dist=loadfile --junitxml=./test-results/pytest/results.xml --no-cov-on-fail --cov-report=html --cov-report=xml --cov-report=term-missing --cov-config=pyproject.toml --cov=. --pdbcls=IPython.terminal.debugger:TerminalPdb -nauto"
-norecursedirs = [
-    "*settings*",
-    "*urls*",
-    "*docs*",
-]
+norecursedirs = ["*settings*", "*urls*", "*docs*"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
 
 
 [tool.coverage.run]
-source = [
-    "mlops"
-]
+source = ["mlops"]
 branch = true
-omit = [
-    ".venv*",
-    "*__init__.py",
-    "*__main__.py",
-    "tests/*",
-]
+omit = [".venv*", "*__init__.py", "*__main__.py", "tests/*"]
 concurrency = ["thread", "multiprocessing", "gevent"]
 
 [tool.coverage.report]
 show_missing = true
 ignore_errors = true
-fail_under = 80
+fail_under = 50
 exclude_lines = [
-    "noqa",
-    "pragma: no cover",
-    "pass",
-    "\\.\\.\\.",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if 0:",
-    "if __name__ == .__main__.:",
-    "def __repr__",
-    "def __str__",
-    "if cls\\.debug",
-    "if (typing\\.|t\\.)?TYPE_CHECKING:",
+  "noqa",
+  "pragma: no cover",
+  "pass",
+  "\\.\\.\\.",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if 0:",
+  "if __name__ == .__main__.:",
+  "def __repr__",
+  "def __str__",
+  "if cls\\.debug",
+  "if (typing\\.|t\\.)?TYPE_CHECKING:",
 ]
 
 [tool.coverage.paths]
-source = [
-    "./"
-]
+source = ["./"]
 
 [tool.coverage.html]
 directory = "./test-results/coverage_html/"

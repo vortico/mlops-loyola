@@ -28,7 +28,7 @@ class TestConfig:
         ],
     )
     def test_load_config(self, yaml_content, expected, tmp_path):
-        temp_yaml = tmp_path / "model_config.yaml"
+        temp_yaml = tmp_path / "model.yaml"
         with open(temp_yaml, "w") as f:
             yaml.dump(yaml_content, f)
 
@@ -52,7 +52,7 @@ class TestConfig:
         ],
     )
     def test_load_config_errors(self, scenario, raises, tmp_path):
-        temp_yaml = tmp_path / "model_config.yaml"
+        temp_yaml = tmp_path / "model.yaml"
 
         if scenario == "invalid_yaml":
             with open(temp_yaml, "w") as f:

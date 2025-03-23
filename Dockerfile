@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Copy project files
 COPY mlops ./mlops/
-COPY model_config.yaml ./
+COPY model.yaml ./
 COPY pyproject.toml poetry.lock ./
 
 # The model file should not be hard copied, as it is an artifact that can change over time.

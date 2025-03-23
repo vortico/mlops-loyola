@@ -7,7 +7,7 @@ RUN curl -sSL https://install.python-poetry.org | python3 - && \
 
 # Copy project files
 COPY mlops ./mlops/
-COPY model_config.yaml ./
+COPY model.yaml ./
 COPY pyproject.toml poetry.lock ./
 
 # Install project dependencies using poetry

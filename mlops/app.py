@@ -1,13 +1,17 @@
-from flama import Flama
+from flama import Flama, types
 
 from mlops import apps
 
-app = Flama(
-    title="MLOps API",
-    version="1.0.0",
-    description="Serving ML/API using Flama 🔥",
-    docs="/docs/",
-)
+OPENAPI: types.OpenAPISpec = {
+    "info": {
+        "title": "MLOps API",
+        "version": "1.0.0",
+        "summary": "Serving ML API using Flama 🔥",
+        "description": "Firing up with the flame",
+    },
+}
+
+app = Flama(openapi=OPENAPI, docs="/docs/")
 
 
 @app.get("/ping/")

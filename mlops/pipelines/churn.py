@@ -11,8 +11,12 @@ from mlops.config import MODEL_CONFIG
 
 class ChurnPipeline:
     def __init__(self, params, *, numeric_features, categorical_features):
-        self.numeric_features = list(set(numeric_features).difference(MODEL_CONFIG["models"]["churn"]["drop_features"]))
-        self.categorical_features = categorical_features
+        self.numeric_features = list(
+            set(numeric_features).difference(MODEL_CONFIG["models"]["churn"]["drop_features"]["numerical"])
+        )
+        self.categorical_features = list(
+            set(categorical_features).difference(MODEL_CONFIG["models"]["churn"]["drop_features"]["categorical"])
+        )
         self.params = params
 
     def build(self):

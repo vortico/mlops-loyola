@@ -19,5 +19,4 @@ class OutlierClipper(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        X_clipped = np.clip(X, self.lower_bounds_, self.upper_bounds_)
-        return X_clipped
+        return np.clip(X, self.lower_bounds_, self.upper_bounds_)

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["poetry_core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [project]
@@ -20,6 +20,9 @@ dependencies = [
 package-mode = true
 include = ["model.yaml"]
 
+[tool.poetry.group.dev]
+optional = true
+
 [tool.poetry.group.dev.dependencies]
 notebook = "^7.3.2"
 pytest = "^8.3"
@@ -31,15 +34,13 @@ isort = "^5.12"
 ruff = "^0.0.292"
 black = "^23.9"
 pre-commit = "^3.4"
-python-multipart = "^0.0.6"
 httpx = ">=0.25,<1.0.0"
-aiosqlite = ">=0.19.0,<1.0.0"
-Faker = "^8.2"
 gevent = "^23.9.1"
 pyright = "^1.1.386"
 matplotlib = "^3.10.0"
-apache-airflow = "^2.10.4"
-mlflow = "^2.19.0"
+
+[tool.poetry.group.airflow]
+optional = true
 
 [tool.poetry.group.airflow.dependencies]
 apache-airflow = "^2.10.4"

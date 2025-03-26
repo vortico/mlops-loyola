@@ -1,7 +1,5 @@
 # MLOps and ML Engineering Course
 
-> Loyola University Sevilla
-
 ## Overview
 
 Welcome to the MLOps and ML Engineering course! This repository contains practical materials and examples for learning modern Machine Learning Operations (MLOps) and engineering best practices. The course is designed to bridge the gap between data science and production-ready ML systems.

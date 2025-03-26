@@ -17,7 +17,7 @@ install: ## Installs the project (only main dependencies)
 	@./scripts/install --only main
 
 install-dev: ## Installs the project (with dev dependencies)
-	@./scripts/install --with dev
+	@./scripts/install --only main,dev
 
 ruff: ## Runs ruff
 	@./scripts/ruff
